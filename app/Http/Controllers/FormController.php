@@ -18,7 +18,7 @@ class FormController extends Controller
             'file'=> 'required|mimes:.xls,xlsx,rtf,txt,odt,pdf,doc,docx|max:5000'
 
         ]);
-
+     
         if ($request->isMethod('post') && $request->file('file')) {
             $file = $request->file('file');
             $upload_folder = 'public/folder/';
@@ -37,8 +37,9 @@ class FormController extends Controller
 
        Mail::to("yana.kurenko@krabutech.ee")->send(new SendMail($data, $upload_folder), function ($message) use ($data,$upload_folder) {//, $filename
             $message->to("yana.kurenko@krabutech.ee")->subject($data);
+            // foreach($data as $upload_folder){
             $message->attach($upload_folder);//,$filename
-            
+            // }
         });
         
         return redirect()->back();

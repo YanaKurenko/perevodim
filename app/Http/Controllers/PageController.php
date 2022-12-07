@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\Partner;
 use App\Models\Accordion;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 
 
@@ -18,31 +19,39 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function services()
+    public function services(Page $page)
     {
         $pages = Page::with('accordions')->where('menu__items_id', 1)->get();
 
-        return view('pages.index', compact('pages'));
+        return view('pages.services.index', compact('pages'));
 
     }
 
-    public function aboutus()
+    public function aboutus(Page $page)
     {
         $pages = Page::with('accordions')->where('menu__items_id', 3)->get();
         $news= News::get();
-        return view('pages.news.index', compact('pages','news'));
+        return view('pages.aboutUs.index', compact('pages','news'));
 
     }
 
-    public function useful()
+    public function useful(Page $page)
     {
         $pages = Page::with('accordions')->where('menu__items_id', 4)->get();
 
-        return view('pages.index', compact('pages'));
+        return view('pages.useful.index', compact('pages'));
 
     }
 
+    public function contacts(){
+        return view('pages.contacts.index');
+    }
+
     public function onMainPage(){
+        // $pages= Accordion::with('pages')->where('menu__items_id', 1)->limit(6)->get();
+        // dd($pages);
+        // $random = Arr::random($allAccord);
+        // dd($random);
         $pages = Page::limit(6)->get();
         $services = News::limit(2)->get();
         $partners = Partner::get();
@@ -82,7 +91,7 @@ class PageController extends Controller
      */
     public function show(Page  $page)
     {
-        //    
+          return view('pages.index', compact('page'));
    
     }
 

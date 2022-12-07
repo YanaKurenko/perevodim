@@ -8,7 +8,7 @@
         <ul style="list-style-type:none;">
             @foreach($pages as $page)
             <div style=" border: 1px solid black;">
-                <a href="/pages/{{ $page->id }}">{{ $page->title }}</a>
+                <a href="/services/">{{ $page->title }}</a>
             </div>
             <li>{{ $page->body }}</li>
 

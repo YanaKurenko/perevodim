@@ -16,7 +16,7 @@
                 <div>
                     <span>Перенесите сюда файл(ы) или нажмите, чтобы загрузить </span><br>
                     <span>Общий объем файлов не должен превышать 5 Mb</span>
-                    <input type="file" name="file">
+                    <input type="file" name="file[]">
                 </div>
             </div>
         </div>

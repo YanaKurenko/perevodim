@@ -18,7 +18,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-       //
+       $x= Service::get();
+       return view('main.serviceMain', compact('x'));
     }
 
     /**

@@ -14,8 +14,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = Partner::get();
-        return view('main.main', compact('partners'));
+        // 
     }
 
     /**

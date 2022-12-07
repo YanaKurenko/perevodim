@@ -5,7 +5,7 @@
         <ul style="list-style-type:none;">
             @foreach($pages as $page)
             <div style=" border: 1px solid black;">
-                <a href="/pages/{{ $page->id }}">{{ $page->title }}</a>
+                <a href="/about_us/">{{ $page->title }}</a>
             </div>
             <li>{{ $page->body }}</li>
 
@@ -36,7 +36,7 @@
         </div>
         <div>
             <p>{{strip_tags(html_entity_decode($news->body))}}</p>
-            
+
         </div>
     </div>
     @endforeach

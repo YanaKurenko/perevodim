@@ -12,6 +12,7 @@ class Service extends Model
     public $timestamps = true;
     
     protected $fillable = [
+        'id',
         'title',
         'icon',
         'description',

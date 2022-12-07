@@ -3,14 +3,8 @@
 <div>
     @includeif('main.form')
 </div>
-<div class="container">
-    <div>
-        <h5><b>Наши услуги</b></h5>
-        @foreach($pages as $page)
-        <a href="/services/{{ $page->id }}"> {{$page->title }}</a>
-        @endforeach
-    </div>
-    <a href="/services">Все услуги</a>
+<div>
+    @include('main.serviceMain')
 </div>
 
 <div class="container">
@@ -24,11 +18,16 @@
 
             <p>{{ date('d.m.Y',strtotime($service->date->toDateString())) }}</p>
 
-            <p>{{ $service->excerpt }}</p>
+            <p style="overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;">{{strip_tags(html_entity_decode($service->body))}}</p>
         </div>
 
         @endforeach
     </div>
+    <a href=" /about_us">Другие новости</a>
 </div>
 <div class="container">
     <h5><b>Наши партнеры</b></h5>
