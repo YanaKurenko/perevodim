@@ -6,37 +6,43 @@ use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\File;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 class FormController extends Controller
 {
 
     public function sendmail(Request $request){
         
         $request->validate([
-            'file'=>'max:5000',
-            'file'=>'mimetypes:file/doc,file/txt,file/pdf'
+            'contact'=> 'required',
+            'message'=> 'required',
+            'file'=> 'required|mimes:.xls,xlsx,rtf,txt,odt,pdf,doc,docx|max:5000'
 
         ]);
 
-
-        $data=[
-            'contact'=>$request->contact,
-            'message'=>$request->message,
-            'file'=>$request->file
-        ];
-        
         if ($request->isMethod('post') && $request->file('file')) {
-
             $file = $request->file('file');
-            $upload_folder = 'public/upload';
+            $upload_folder = 'public/folder/';
             $filename = $file->getClientOriginalName();
             Storage::putFileAs($upload_folder, $file, $filename);
         }
 
-        Mail::to("yana.kurenko@krabutech.ee")->send(new SendMail($data));
+        $data = [
+            'contact' => $request->contact,
+            'message' => $request->message,
+            'file' => $request->file,
+
+        ];
+       
+        $upload_folder = 'C:\Users\owner\Documents\Visual Studio 2017\Templates\Perevodim\perevodim\public\storage\folder\\' . $filename; // ADDRESS WHERE THE FILE IS STORE
+
+       Mail::to("yana.kurenko@krabutech.ee")->send(new SendMail($data, $upload_folder), function ($message) use ($data,$upload_folder) {//, $filename
+            $message->to("yana.kurenko@krabutech.ee")->subject($data);
+            $message->attach($upload_folder);//,$filename
+            
+        });
+        
         return redirect()->back();
- 
+
     }
 
     /**

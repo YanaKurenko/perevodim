@@ -12,6 +12,7 @@ class Partner extends Model
     public $timestamps = true;
     
     protected $fillable = [
+        'id',
         'icon'
     ];
 }

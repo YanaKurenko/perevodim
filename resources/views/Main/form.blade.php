@@ -1,5 +1,3 @@
-@extends('layouts.app')
-@section('content')
 <div class="container">
     <h1></h1>
     <p></p>
@@ -32,4 +30,3 @@
         </div>
     </form>
 </div>
-@endsection

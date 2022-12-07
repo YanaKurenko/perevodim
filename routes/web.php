@@ -3,14 +3,8 @@
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\EmailController;
-use App\Http\Controllers\NewsController;
-use App\Models\Page;
-use App\Models\News;
-use Illuminate\Http\Client\Request as ClientRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Request as FacadesRequest;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +26,10 @@ Route::get('/about_us', [PageController::class, 'aboutus']);
 Route::get('/useful', [PageController::class, 'useful']);
 
 Route::get('/', function(){
-    return view('pages.main.form');
+    return view('main.form');
 },[FormController::class, 'upload']);
+
+Route::get('/', [PageController::class, 'onMainPage']);
 
 Route::post('/form', [FormController::class, 'sendmail']);
 

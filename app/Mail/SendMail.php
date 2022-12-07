@@ -17,9 +17,10 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $upload_folder)
     {
         $this->data = $data;
+        $this->upload_folder = $upload_folder;
     }
 
     /**
@@ -31,6 +32,11 @@ class SendMail extends Mailable
     {
         return $this->subject("Request for translation services")
                     ->view('emails.testMail')
-                    ->with('data', $this->data);
+                    ->with('data', $this->data)
+                    ->attach($this->upload_folder);
+                    
+
+ 
+
     }
 }

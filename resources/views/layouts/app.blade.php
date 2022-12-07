@@ -31,6 +31,7 @@
  </div>
 <div class="content" >
  @yield('content')
+
 </div>
 
 <div class="container">

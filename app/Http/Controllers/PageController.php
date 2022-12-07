@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\News;
+use App\Models\Partner;
 use App\Models\Accordion;
 use Illuminate\Support\Facades\DB;
 
@@ -41,6 +42,12 @@ class PageController extends Controller
 
     }
 
+    public function onMainPage(){
+        $pages = Page::limit(6)->get();
+        $services = News::limit(2)->get();
+        $partners = Partner::get();
+        return view('main.main', compact('pages', 'services','partners'));
+    }
 
 
    
