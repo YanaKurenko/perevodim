@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    //use HasFactory;
+    use HasFactory;
     protected $table = 'menus';
     public $timestamps = true;
     

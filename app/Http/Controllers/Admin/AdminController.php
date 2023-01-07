@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Accordion;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AccordionController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AccordionController extends Controller
      */
     public function index()
     {
-        //
+        return view('layouts.admin');
     }
 
     /**
@@ -41,10 +41,10 @@ class AccordionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Accordion  $accordion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Accordion $accordion)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class AccordionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Accordion  $accordion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Accordion $accordion)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class AccordionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Accordion  $accordion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Accordion $accordion)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class AccordionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Accordion  $accordion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Accordion $accordion)
+    public function destroy($id)
     {
         //
     }

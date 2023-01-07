@@ -5,7 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\News;
 use App\Models\Partner;
-use App\Models\Accordion;
+use App\Models\Service;
+use App\Models\Menu_Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
@@ -19,7 +20,7 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function services(Page $page)
+    public function services()
     {
         $pages = Page::with('accordions')->where('menu__items_id', 1)->get();
 
@@ -27,7 +28,7 @@ class PageController extends Controller
 
     }
 
-    public function aboutus(Page $page)
+    public function aboutus()
     {
         $pages = Page::with('accordions')->where('menu__items_id', 3)->get();
         $news= News::get();
@@ -35,7 +36,7 @@ class PageController extends Controller
 
     }
 
-    public function useful(Page $page)
+    public function useful()
     {
         $pages = Page::with('accordions')->where('menu__items_id', 4)->get();
 
@@ -44,21 +45,39 @@ class PageController extends Controller
     }
 
     public function contacts(){
-        return view('pages.contacts.index');
+        // $variables= Variable::get();
+        // return view('pages.contacts.index', compact('variables'));
     }
 
     public function onMainPage(){
-        // $pages= Accordion::with('pages')->where('menu__items_id', 1)->limit(6)->get();
-        // dd($pages);
-        // $random = Arr::random($allAccord);
-        // dd($random);
-        $pages = Page::limit(6)->get();
+        $x = Service::get();
         $services = News::limit(2)->get();
         $partners = Partner::get();
-        return view('main.main', compact('pages', 'services','partners'));
+        return view('main.main', compact('x', 'services', 'partners'));
     }
 
+    public function listPages()
+    {
+        $menuItems = Menu_Item::get();
+        $pages = Page::with('accordions')->get();
+        return view('pages.admin.list', compact('pages', 'menuItems'));
+    }
 
+    public function pageItem(Request $request)
+    {
+        $data = $request->all();
+        $menuItems = Menu_Item::get();
+        
+        $selectItem = $data['menu__items_id'];
+       
+
+        if ($data['menu__items_id'] == "0") {
+            return redirect('/pages');
+        } else {
+            $pages = Page::where('menu__items_id', $data['menu__items_id'])->get();
+            return view('pages.admin.list', compact('pages', 'menuItems', 'selectItem'));
+        }
+    }
    
 
     
@@ -69,7 +88,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        $menuItems = Menu_Item::get();
+        return view('pages.admin.create', compact('menuItems'));
     }
 
     /**
@@ -80,7 +100,16 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'menu__items_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+
+        ]);
+        $data = $request->all();
+        Page::create($data);
+        return redirect('/admin/dashboard/pages');
     }
 
     /**
@@ -103,7 +132,8 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        $menuItems=Menu_Item::get();
+        return view('pages.admin.edit',compact('page','menuItems'));
     }
 
     /**
@@ -115,7 +145,13 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
+        $request->validate([
+            'menu__items_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+        $page->update($request->all());
+        return redirect('/admin/dashboard/pages');
     }
 
     /**
@@ -126,6 +162,7 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        $page-> delete();
+        return redirect('/admin/dashboard/pages');
     }
 }

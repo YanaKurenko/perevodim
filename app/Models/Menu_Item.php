@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu_Item extends Model
 {
-    //use HasFactory;
+    use HasFactory;
     protected $table = 'menu__items';
     public $timestamps = true;
     
     protected $fillable = [
+        'id',
         'title',
         'menu_id',
-        'parent_id'
+        'parent_id',
+        'link'
     ];
 
         public function children()
@@ -34,6 +36,6 @@ class Menu_Item extends Model
     
         public function page()
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class, 'menu__items_id');
     }
 }

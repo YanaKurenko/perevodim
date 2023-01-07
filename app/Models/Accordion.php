@@ -13,6 +13,7 @@ class Accordion extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'id',
         'title',
         'body'
     ];

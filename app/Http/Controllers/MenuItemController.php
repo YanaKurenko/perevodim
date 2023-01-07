@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu_Item;
-use App\Models\Page;
 use Illuminate\Http\Request;
 
 class MenuItemController extends Controller
@@ -13,15 +12,10 @@ class MenuItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Menu_Item $menu__items)
+    public function index()
     {
-        // $menu__items=Menu_Item::OrderBy('title','asc')->get();
-        // $pages=Page::where('menu__items_id', $menu__items->id)->get();
-        // return view('services.index', compact('menu_items','pages',));
-
-        // $menu__items= Menu_Item::orderBy ('id')->get(); 
-        // $pages= Page::where('menu__items_id', $menu__items->id);
-		// return view ('services.index', compact ('menu__items','pages'));
+        $menulist= Menu_Item::all();
+        return view('menu',compact('menulist'));
     }
 
     /**
