@@ -23,37 +23,40 @@ class PageController extends Controller
     public function services()
     {
         $pages = Page::with('accordions')->where('menu__items_id', 1)->get();
-
-        return view('pages.services.index', compact('pages'));
+        $menulist = Menu_Item::get();
+        return view('pages.services.index', compact('pages', 'menulist'));
 
     }
-
+    public function prices()
+    {
+        $pages = Page::with('accordions')->where('menu__items_id', 2)->get();
+        $menulist = Menu_Item::get();
+        return view('pages.prices.index', compact('pages', 'menulist'));
+    }
     public function aboutus()
     {
         $pages = Page::with('accordions')->where('menu__items_id', 3)->get();
         $news= News::get();
-        return view('pages.aboutUs.index', compact('pages','news'));
+        $menulist = Menu_Item::get();
+        return view('pages.aboutUs.index', compact('pages','news', 'menulist'));
 
     }
 
     public function useful()
     {
         $pages = Page::with('accordions')->where('menu__items_id', 4)->get();
-
-        return view('pages.useful.index', compact('pages'));
+        $menulist = Menu_Item::get();
+        return view('pages.useful.index', compact('pages', 'menulist'));
 
     }
 
-    public function contacts(){
-        // $variables= Variable::get();
-        // return view('pages.contacts.index', compact('variables'));
-    }
 
     public function onMainPage(){
         $x = Service::get();
         $services = News::limit(2)->get();
         $partners = Partner::get();
-        return view('main.main', compact('x', 'services', 'partners'));
+        $menulist = Menu_Item::get();
+        return view('main.main', compact('x', 'services', 'partners', 'menulist'));
     }
 
     public function listPages()

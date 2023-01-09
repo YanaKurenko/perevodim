@@ -25,14 +25,13 @@
   </nav>
   <nav>
     <div class="container">
-
-    <a class="navbar-brand" href="{{ url('/') }}">Perevodim.ee</a>
-    <a class="navbar-brand" href="{{ url('/services') }}">Услуги</a>
-    <a class="navbar-brand" href="{{ url('/') }}">Цены</a>
-    <a class="navbar-brand" href="{{ url('/about_us') }}">О нас</a>
-    <a class="navbar-brand" href="{{ url('/useful') }}">Полезное</a>
-    <a class="navbar-brand" href="{{ url('/contact') }}">Контакты</a>
-  </div>
+      <div>
+        <a class="navbar-brand" href="{{ url('/') }}">Perevodim.ee</a>
+        @foreach($menulist as $menu)
+        <a class="navbar-brand" href="{{ $menu->link }}">{{$menu->title}}</a>
+        @endforeach
+      </div>
+    </div>
   </nav>
 
 
@@ -53,11 +52,9 @@
     <footer>
       <div>
         <a class="navbar-brand" href="{{ url('/') }}">Главная</a>
-        <a class="navbar-brand" href="{{ url('/services') }}">Услуги</a>
-        <a class="navbar-brand" href="{{ url('/') }}">Цены</a>
-        <a class="navbar-brand" href="{{ url('/about_us') }}">О нас</a>
-        <a class="navbar-brand" href="{{ url('/useful') }}">Полезное</a>
-        <a class="navbar-brand" href="{{ url('/contact') }}">Контакты</a>
+        @foreach($menulist as $menu)
+        <a class="navbar-brand" href="{{ $menu->link }}">{{$menu->title}}</a>
+        @endforeach
         <br>
         <span class="text-muted"> &copy; 2022. All Rights Reserved. Krabu Grupp</span>
       </div>

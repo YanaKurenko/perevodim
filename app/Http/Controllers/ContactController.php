@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu_Item;
 use App\Models\Variable;
 use Illuminate\Http\Request;
 
@@ -15,13 +16,14 @@ class ContactController extends Controller
     public function index()
     {
         $variables = Variable::get();
-        return view('pages.contacts.index', compact('variables'));
+        $menulist = Menu_Item::get();
+        return view('pages.contacts.index', compact('variables', 'menulist'));
     }
 
     public function list() {
         $variables = Variable::get();
         // dd($variables);
-        return view('pages.contacts.list', compact('variables'));
+        return view('pages.contacts.variables.list', compact('variables'));
     }
 
     /**
@@ -32,7 +34,7 @@ class ContactController extends Controller
     public function create()
     {
         $variables = Variable::orderby('id','asc')->get();
-        return view('pages.contacts.create', compact('variables'));
+        return view('pages.contacts.variables.create', compact('variables'));
     }
 
     /**
@@ -53,16 +55,7 @@ class ContactController extends Controller
         return redirect('/admin/dashboard/list');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Variable  $variable
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Variable $variable)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -72,7 +65,7 @@ class ContactController extends Controller
      */
     public function edit(Variable $variable)
     {
-        return view('pages.contacts.edit', compact('variable'));
+        return view('pages.contacts.variables.edit', compact('variable'));
     }
 
     /**

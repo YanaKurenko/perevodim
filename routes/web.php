@@ -21,28 +21,28 @@ use App\Http\Controllers\ServiceController;
 |
 */
 
+Route::get('/', function(){
+    return view('main.form');
+},[FormController::class, 'upload']);
+Route::get('/', [MenuItemController::class, 'index']);
 Route::get('google-autocomplete', [GoogleController::class, 'index']);
 
 Route::get('/services', [PageController::class, 'services']);
 Route::get('/about_us', [PageController::class, 'aboutus']);
+Route::get('/prices', [PageController::class, 'prices']);
 Route::get('/about_us/{page}', [PageController::class, 'show']);
 
 Route::get('/useful', [PageController::class, 'useful']);
 Route::get('/useful/{page}', [PageController::class, 'show'] );
 Route::get('/contact', [ContactController::class, 'index'] );
 
-Route::get('/', function(){
-    return view('main.form');
-},[FormController::class, 'upload']);
-
 Route::get('/', [PageController::class, 'onMainPage']);
 Route::get('/serviceMain', [ServiceController::class, 'index']);
+
 //----------------Blade for @includeif---------------------
 Route::post('/form', [FormController::class, 'sendmail']);
-Route::get('/menu', [MenuItemController::class, 'index']);
 //-------------------------------------------------------
 
-// Route::get('/admin/dashboard/list', [ContactController::class, 'list']);
 
 
 

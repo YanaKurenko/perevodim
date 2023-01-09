@@ -32,7 +32,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Body:</strong>
-                        <textarea class="form-control" style="height:50px" name="body" placeholder="body"></textarea>
+                        <textarea class="form-control" id="editor" name="body"></textarea>
+                        {{ csrf_field() }}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

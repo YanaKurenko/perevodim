@@ -16,16 +16,13 @@ class AuthController extends Controller
             "password" =>["required"]
         ]);
         if(auth("admin")->attempt($data)){
-            return redirect()->action([AdminController::class, 'index']);
-            // return redirect(route("admin.dashboard")); 
-            //return redirect(route("layouts.admin"))
-            
+            return redirect(route("admin.dashboard.index"));                      
         }
         return redirect()->route("admin.login")->withErrors(["email"=>"Пользователь не найден"]);
     }
 
     public function logout(){
         auth("admin")->logout();
-        return redirect()->route('login');
+        return redirect()->route('admin.login');
     }
 }

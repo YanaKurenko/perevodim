@@ -95,7 +95,11 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => [
+        'English'=>'en',
+        'Russian' =>'ru',
+        'Estonian' =>'et',
+    ],
 
     /*
     |--------------------------------------------------------------------------

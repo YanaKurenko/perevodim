@@ -32,15 +32,15 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Body:</strong>
-                        
-                        <textarea class="form-control" style="height:50px" name="body" value="" placeholder="Body">{{$page->body}}</textarea>
-                    </div>
+                    <textarea class="form-control" id="editor" name="body">{{$page->body}}</textarea>
+                {{ csrf_field() }}
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Save page</button>
                 </div>
+
+             
+
             </form>
 
         </div>

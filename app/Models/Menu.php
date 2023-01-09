@@ -12,6 +12,7 @@ class Menu extends Model
     public $timestamps = true;
     
     protected $fillable = [
+        'id',
         'title'
     ];
 

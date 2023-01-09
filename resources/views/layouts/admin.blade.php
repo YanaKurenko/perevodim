@@ -56,7 +56,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="{{ url('/') }}" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -88,13 +88,13 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-barcode"></i>
-                            
+
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ url('/') }}"><i class="fa fa-circle-o"></i> Home </a></li>
+                            <li><a href="{{ url('/admin/dashboard/menuitems') }}"><i class="fa fa-circle-o"></i> Menu </a></li>
                             <li><a href="{{ url('/admin/dashboard/pages') }}"><i class="fa fa-circle-o"></i> Pages</a></li>
                             <li><a href="{{ url('/admin/dashboard/list') }}"><i class="fa fa-circle-o"></i> Variables</a></li>
                         </ul>
@@ -124,7 +124,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
-                        
+
 
                             @yield('content')
 
@@ -154,6 +154,15 @@
     <script src='{{ asset("components/bootstrap/dist/js/bootstrap.min.js") }}'></script>
     <!-- AdminLTE App -->
     <script src='{{ asset("dist/js/adminlte.min.js") }}'></script>
+    <!-- Ckeditor -->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
 
 </html>

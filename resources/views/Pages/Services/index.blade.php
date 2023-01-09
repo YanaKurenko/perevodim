@@ -10,10 +10,10 @@
             <div style=" border: 1px solid black;">
                 <a href="/services/">{{ $page->title }}</a>
             </div>
-            <li>{{ $page->body }}</li>
+            <li>{!! $page->body !!}</li>
 
             @foreach($page->accordions as $accordion)
-            <div class="container"><b>{{ $accordion->title }}</b><br>{{ $accordion->body }}</div>
+            <div class="container"><b>{!! $accordion->title !!}</b><br>{!! $accordion->body !!}</div>
             @endforeach
 
             @endforeach

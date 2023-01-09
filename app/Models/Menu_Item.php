@@ -31,7 +31,7 @@ class Menu_Item extends Model
 
         public function menu()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(Menu::class,'menu_id');
     }
     
         public function page()
